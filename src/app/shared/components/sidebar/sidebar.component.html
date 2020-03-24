@@ -1,0 +1,34 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>Hi {{currentUser.firstName}}!</h2>
+        </div>
+        <img src="https://www.channelfutures.com/files/2013/05/puzzle-pieces5_0-877x432.jpg" alt="puzzle piece">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Pages</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/employees">
+        <mat-icon>supervised_user_circle</mat-icon>
+        Employees</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/attendance">
+        <mat-icon>calendar_today</mat-icon>
+        Attendance</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/allocate">
+        <mat-icon>brightness_auto</mat-icon>
+        Allocate</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/reports">
+        <mat-icon>description</mat-icon>
+        Reports</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/setup">
+        <mat-icon>settings</mat-icon>
+        Setup</a>
+
+</mat-nav-list>
+
+
