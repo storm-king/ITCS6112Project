@@ -15,13 +15,13 @@ export class JobTypeService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:8080/job_types/all');
+    return this.http.get('//localhost:8181/job_types/all');
   }
 
   createJobType(user: UsersData){
     console.log(user.id)
     console.log(user.typeName)
-    this.http.post('//localhost:8080/job_types/add', 
+    this.http.post('//localhost:8181/job_types/add', 
     {
       "id": user.id,
       "typeName": user.typeName
@@ -36,7 +36,7 @@ export class JobTypeService {
   } 
 
   deleteJobType(id:number){
-    return this.http.delete(`//localhost:8080/job_types/delete/${id}`, { responseType: 'text' }).subscribe(data => {
+    return this.http.delete(`//localhost:8181/job_types/delete/${id}`, { responseType: 'text' }).subscribe(data => {
       console.log(data);
   });
 }

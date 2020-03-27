@@ -13,6 +13,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {  MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +25,7 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     AlertComponent,
     LoginComponent,
     RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -27,8 +33,20 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatFormFieldModule,
+    MatInputModule
+  
   ],
+  exports: [
+    MatDatepickerModule, 
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule    
+
+],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
