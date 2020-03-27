@@ -16,7 +16,9 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {  MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import {  MatInputModule } from '@angular/material/input';
     AlertComponent,
     LoginComponent,
     RegisterComponent,
+   
+   
     
   ],
   imports: [
@@ -37,14 +41,16 @@ import {  MatInputModule } from '@angular/material/input';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   
   ],
   exports: [
     MatDatepickerModule, 
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule    
+    MatInputModule,
+    FormsModule    
 
 ],
   providers: [

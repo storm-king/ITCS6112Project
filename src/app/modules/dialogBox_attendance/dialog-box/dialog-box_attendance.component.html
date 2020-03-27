@@ -2,9 +2,7 @@
 <h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.code_id">
-  
-    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.hours_missed">
+    <input placeholder="{{action}} Absence" matInput [(ngModel)]="local_data.code_id">
    
   </mat-form-field>
   <ng-template #elseTemplate>

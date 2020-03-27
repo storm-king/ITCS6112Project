@@ -19,6 +19,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button';
 import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-box.component';
 import { FormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { FormsModule } from '@angular/forms';
     AllocateComponent,
     ReportsComponent,
     SetupComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    AttendanceComponent,
+    DialogBoxAttendanceComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +48,9 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents: [
     DialogBoxComponent

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
-import { DialogBoxComponent } from '../dialogBox_attendance/dialog-box/dialog-box_attendance.component';
+import { DialogBoxAttendanceComponent } from '../dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 import { MatTable } from '@angular/material/table';
 import { Attendance } from 'src/app/models/attendance';
 
@@ -17,6 +17,8 @@ import { Attendance } from 'src/app/models/attendance';
 })
 export class AttendanceComponent implements OnInit {
 
+  enableEdit = false;
+  enableEditIndex = null;
   attendance: Array<any>;
   displayedColumns: string[] = ['id','employee_id', 'hours_missed','absence_date','code_id','action'];
   dataSource: Array<any>;
@@ -31,10 +33,15 @@ export class AttendanceComponent implements OnInit {
       this.dataSource = data;
     });
   }
+  enableEditMethod(e, i) {
+    this.enableEdit = true;
+    this.enableEditIndex = i;
+    console.log(i, e);
+  }
 
   openDialog(action,obj) {
     obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
+    const dialogRef = this.dialog.open(DialogBoxAttendanceComponent, {
       width: '250px',
       data:obj
     });

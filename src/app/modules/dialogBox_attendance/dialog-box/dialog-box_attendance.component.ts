@@ -9,12 +9,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   templateUrl: './dialog-box_attendance.component.html',
   styleUrls: ['./dialog-box_attendance.component.scss']
 })
-export class DialogBoxComponent implements OnInit {
+export class DialogBoxAttendanceComponent implements OnInit {
 
   action:string;
   local_data:any;
 
-  constructor( public dialogRef: MatDialogRef<DialogBoxComponent>,
+  constructor( public dialogRef: MatDialogRef<DialogBoxAttendanceComponent>,
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Attendance) {
     console.log(data);
