@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button';
 import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-box.component';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon'
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   entryComponents: [
     DialogBoxComponent

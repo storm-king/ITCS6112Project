@@ -14,7 +14,7 @@ import { JobType } from 'src/app/models/jobType';
 export class SetupComponent implements OnInit {
 
   jobTypes: Array<any>;
-  displayedColumns: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   dataSource: Array<any>;
 
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
@@ -47,17 +47,31 @@ export class SetupComponent implements OnInit {
   }
  
   addRowData(row_obj){
+    //If not empty, get the previous Id
+    var previousId;
+    if(this.dataSource.length > 0){
+      var previousElem = this.dataSource.pop();
+      previousId = previousElem.id;
+      this.dataSource.push(previousElem);
+    }
+    else{
+      previousId = 0;
+    }
 
+    //Increment previous Id by 1 and add new entry to the table
+    previousId++;
     this.dataSource.push({
-      id:this.dataSource.length + 1,
+      id:previousId,
       typeName:row_obj.typeName
     });
     this.table.renderRows();
+
     var jobType = new JobType()
-    jobType.id = this.dataSource.length;
+    jobType.id = previousId;
     jobType.typeName = row_obj.typeName;
     this.jobTypeService.createJobType(jobType);
   }
+
   updateRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
@@ -66,6 +80,7 @@ export class SetupComponent implements OnInit {
       return true;
     });
   }
+
   deleteRowData(row_obj){
     this.jobTypeService.deleteJobType(row_obj.id);
     this.dataSource = this.dataSource.filter((value,key)=>{
