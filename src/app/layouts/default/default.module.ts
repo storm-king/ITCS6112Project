@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -34,7 +35,8 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     SetupComponent,
     DialogBoxComponent,
     AttendanceComponent,
-    DialogBoxAttendanceComponent
+    DialogBoxAttendanceComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -50,8 +52,11 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     MatButtonModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    
   ],
+  providers: [DatePipe],
+  
   entryComponents: [
     DialogBoxComponent
   ]

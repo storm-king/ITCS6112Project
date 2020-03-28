@@ -2,6 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Time } from '@angular/common';
+import { Attendance } from 'src/app/models/attendance';
 
 
 
@@ -21,7 +22,12 @@ export class AttendanceService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:8181/attendance/all');
+    
+    return this.http.get('//localhost:8080/attendance/all');
+  }
+  getTodaysAttendance(date:string): Observable<any> {
+    
+    return this.http.get('//localhost:8080/attendance/today',{params:{date}});
   }
 
   createAttendance(attendance: AttendanceData){
@@ -29,7 +35,7 @@ export class AttendanceService {
     console.log(attendance.absence_date)
     console.log(attendance.hours_missed)
     console.log(attendance.code_id)
-    this.http.post('//localhost:8181/attendance/add', 
+    this.http.post('//localhost:8080/attendance/add', 
     {
       "id": attendance.id,
       "employee_id":attendance.employee_id,
@@ -47,8 +53,19 @@ export class AttendanceService {
   } 
 
   deleteAttendance(id:number){
-    return this.http.delete(`//localhost:8181/attendance/delete/${id}`, { responseType: 'text' }).subscribe(data => {
+    return this.http.delete(`//localhost:8080/attendance/delete/${id}`, { responseType: 'text' }).subscribe(data => {
       console.log(data);
+  });
+ 
+}
+updateAttendance(attendance:Attendance){
+  return this.http.post('//localhost:8080/attendance/update',attendance, {responseType: 'text'}).subscribe(data =>{
+   
+      console.log("POST Request is successful ", data);
+      },
+      error  => {
+      console.log("Error", error);
+      
   });
 }
 }

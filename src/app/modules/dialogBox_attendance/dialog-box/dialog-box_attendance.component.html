@@ -1,10 +1,15 @@
 <!-- dialog-box_attendance.component.html -->
 <h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
-  <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{action}} Absence" matInput [(ngModel)]="local_data.code_id">
+  <mat-form-field *ngIf="id == 'Absence Code' && action != 'Delete'">
+    <input placeholder="{{action}} {{id}} "  matInput [(ngModel)]="local_data.code_id">
    
   </mat-form-field>
+  <mat-form-field *ngIf="id == 'Hours Missed' && action != 'Delete'">
+    <input placeholder="{{action}} {{id}} "  matInput [(ngModel)]="local_data.hours_missed">
+   
+  </mat-form-field>
+  
   <ng-template #elseTemplate>
     Sure to delete <b>{{local_data.typeName}}</b>?
   </ng-template>

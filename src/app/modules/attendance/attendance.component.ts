@@ -4,6 +4,9 @@ import { AttendanceService } from 'src/app/services/attendance/attendance.servic
 import { DialogBoxAttendanceComponent } from '../dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 import { MatTable } from '@angular/material/table';
 import { Attendance } from 'src/app/models/attendance';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { stringToKeyValue } from '@angular/flex-layout/extended/typings/style/style-transforms';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -16,54 +19,82 @@ import { Attendance } from 'src/app/models/attendance';
   styleUrls: ['./attendance.component.scss']
 })
 export class AttendanceComponent implements OnInit {
-
-  enableEdit = false;
+  
+   today = new Date();
+   events: string[] = [];
+   hold: Date;
+   count: number;
+ startDate:Date;
+    enableEdit = false;
   enableEditIndex = null;
   attendance: Array<any>;
   displayedColumns: string[] = ['id','employee_id', 'hours_missed','absence_date','code_id','action'];
   dataSource: Array<any>;
 
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  roomsFilter: any;
 
-  constructor(private attendanceService: AttendanceService, public dialog: MatDialog) { }
+  constructor(private attendanceService: AttendanceService, public dialog: MatDialog,private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.attendanceService.getAll().subscribe((data) => {
-      this.attendance = data;
-      this.dataSource = data;
-    });
+    console.log(this.today);
+    
+   
+    this.count =0;
   }
+ 
   enableEditMethod(e, i) {
     this.enableEdit = true;
     this.enableEditIndex = i;
     console.log(i, e);
   }
 
-  openDialog(action,obj) {
+  openDialog(action,obj,element_id) {
     obj.action = action;
+  obj.element_id= element_id;
     const dialogRef = this.dialog.open(DialogBoxAttendanceComponent, {
       width: '250px',
-      data:obj
+      data:obj,
+    
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      
       if(result.event == 'Add'){
         this.addRowData(result.data);
       }else if(result.event == 'Update'){
+       
         this.updateRowData(result.data);
       }else if(result.event == 'Delete'){
         this.deleteRowData(result.data);
       }
     });
   }
+  
+  
+
+  addEvent() {
+    this.events.push(`${this.startDate}`);
+    
+  console.log(this.events[this.count]);
+  console.log(this.count);
+    this.attendanceService.getTodaysAttendance(this.events[this.count]).subscribe((data) =>{
+      this.attendance = data;
+      this.dataSource = data;
+    }
+    )
+  
+    this.count++;
+  }
  
+  
   addRowData(row_obj){
 
     this.dataSource.push({
       id:this.dataSource.length + 1,
       employee_id:row_obj.employee_id,
       absence_date:row_obj.absence_date,
-      hours_missed:row_obj.hours_missed-19,
+      hours_missed:row_obj.hours_missed,
       code_id:row_obj.code_id
       
     });
@@ -80,11 +111,14 @@ export class AttendanceComponent implements OnInit {
   updateRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
-        value.employee_id= row_obj.employee_id;
-        value.absence_date = row_obj.absence_date;
-       value.hours_missed = row_obj.hours_missed;
+        value.hours_missed = row_obj.hours_missed;
         value.code_id= row_obj.code_id;
+        console.log(row_obj);
+       
+        this.attendanceService.updateAttendance(row_obj);
+       
       }
+      this.table.renderRows();
       return true;
     });
   }
