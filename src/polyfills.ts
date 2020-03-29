@@ -55,10 +55,6 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-
- //Some features used by Angular 7 are not yet supported natively by all major browsers, 
- //polyfills are used to add support for features where necessary so your Angular 7 application 
- //works across all major browsers.
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 import 'core-js/features/reflect' //Added manually by storm
 

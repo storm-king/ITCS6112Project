@@ -20,9 +20,7 @@ export class AuthenticationService {
     }
 
     login(username, password) {
-        console.log("inside login");
-        return this.http.post<any>(`${GlobalConstants.apiURL}/users/authenticate`, {
-             "username":username, "password":password, "first_name":"Storm", "last_name":"king" })
+        return this.http.post<any>(`${GlobalConstants.apiURL}/users/authenticate`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
