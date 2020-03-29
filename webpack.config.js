@@ -1,7 +1,10 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-
+/*This is a minimal webpack.config.js for bundling an Angular 7 application, 
+it compiles TypeScript files using ts-loader, loads angular templates with raw-loader, 
+and injects the bundled scripts into the body of the index.html page using the HtmlWebpackPlugin. 
+It also defines a global config object with the plugin webpack.DefinePlugin.*/
 module.exports = {
     entry: './src/main.ts',
     resolve: {
