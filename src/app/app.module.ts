@@ -14,7 +14,6 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
 
-
 @NgModule({
   declarations: [
     AppComponent,
