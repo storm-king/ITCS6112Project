@@ -13,6 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+
 
 /*The app module defines the root module of the 
 application along with metadata about the module*/
@@ -22,6 +29,9 @@ application along with metadata about the module*/
     AlertComponent,
     LoginComponent,
     RegisterComponent,
+   
+   
+    
   ],
   imports: [
     BrowserModule,
@@ -29,8 +39,22 @@ application along with metadata about the module*/
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
+  
   ],
+  exports: [
+    MatDatepickerModule, 
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule    
+
+],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

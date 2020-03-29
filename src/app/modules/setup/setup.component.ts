@@ -76,6 +76,7 @@ export class SetupComponent implements OnInit {
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
         value.typeName = row_obj.typeName;
+        
       }
       return true;
     });

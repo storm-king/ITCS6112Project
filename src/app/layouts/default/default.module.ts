@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
@@ -19,7 +19,10 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button';
 import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-box.component';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { MatIconModule } from '@angular/material/icon'
     AllocateComponent,
     ReportsComponent,
     SetupComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    AttendanceComponent,
+    DialogBoxAttendanceComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -46,8 +52,13 @@ import { MatIconModule } from '@angular/material/icon'
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
   ],
+  providers: [DatePipe],
+  
   entryComponents: [
     DialogBoxComponent
   ]
