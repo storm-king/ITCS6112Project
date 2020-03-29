@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
+import './content/app.less';
 import { User } from './models/user';
 import { AuthenticationService } from './services/authentication/authentication.service';
 

@@ -11,15 +11,7 @@ import { AttendanceComponent } from 'src/app/modules/attendance/attendance.compo
 import { AllocateComponent } from 'src/app/modules/allocate/allocate.component';
 import { ReportsComponent } from 'src/app/modules/reports/reports.component';
 import { SetupComponent } from 'src/app/modules/setup/setup.component';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule} from '@angular/material/input'
-import { MatTableModule } from '@angular/material/table'
-import { MatButtonModule } from '@angular/material/button';
-import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-box.component';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon'
+
 
 
 @NgModule({
@@ -30,26 +22,14 @@ import { MatIconModule } from '@angular/material/icon'
     AttendanceComponent,
     AllocateComponent,
     ReportsComponent,
-    SetupComponent,
-    DialogBoxComponent
+    SetupComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     MatSidenavModule,
-    MatDividerModule,
-    MatTabsModule,
-    MatTableModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatIconModule
-  ],
-  entryComponents: [
-    DialogBoxComponent
+    MatDividerModule
   ]
 })
 export class DefaultModule { }
