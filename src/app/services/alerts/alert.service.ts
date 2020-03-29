@@ -1,7 +1,14 @@
+//The alert service enables any component in the application to display alert 
+//messages at the top of the page via the alert component.
+
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-
+/*
+The alert component passes alert messages to the template whenever 
+a message is received from the alert service It does this by subscribing 
+to the alert service's getMessage() method which returns an Observable.
+*/
 @Injectable({ providedIn: 'root' })
 export class AlertService {
     private subject = new Subject<any>();

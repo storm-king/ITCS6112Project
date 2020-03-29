@@ -11,7 +11,9 @@ import { AuthGuard } from './helpers/auth.guard';
 import { LoginComponent } from './components/login/login/login.component';
 import { RegisterComponent } from './components/register/register/register.component';
 
-
+/*The app routing file defines the routes of the application, 
+each route contains a path and associated component. The home 
+route is secured by passing the AuthGuard to the canActivate property of the route.*/
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
