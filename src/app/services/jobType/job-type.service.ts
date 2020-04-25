@@ -19,8 +19,6 @@ export class JobTypeService {
   }
 
   createJobType(user: UsersData){
-    console.log(user.id)
-    console.log(user.typeName)
     this.http.post('//localhost:8080/job_types/add', 
     {
       "id": user.id,
@@ -38,6 +36,23 @@ export class JobTypeService {
   deleteJobType(id:number){
     return this.http.delete(`//localhost:8080/job_types/delete/${id}`, { responseType: 'text' }).subscribe(data => {
       console.log(data);
-  });
-}
+    });
+  }
+
+  updateJobType(id:number, user:UsersData){
+    this.http.post(`//localhost:8080/job_types/update/${id}`, 
+    {
+      "id": user.id,
+      "typeName": user.typeName,
+      "ranks": []
+    })
+    .subscribe(
+      data  => {
+      console.log("POST Request is successful ", data);
+      },
+      error  => {
+      console.log("Error", error);
+      });
+  }
+
 }

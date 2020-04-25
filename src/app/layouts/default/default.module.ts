@@ -21,9 +21,9 @@ import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     DialogBoxComponent,
     AttendanceComponent,
     DialogBoxAttendanceComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -55,7 +54,7 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    DragDropModule
   ],
   providers: [DatePipe],
   
