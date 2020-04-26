@@ -19,8 +19,6 @@ export class JobTypeService {
   }
 
   createJobType(user: UsersData){
-    console.log(user.id)
-    console.log(user.typeName)
     this.http.post('//localhost:8080/job_types/add', 
     {
       "id": user.id,

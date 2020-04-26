@@ -9,7 +9,15 @@ import { WorkGroup } from 'src/app/models/workGroup';
 import { DialogBoxWorkGroupsComponent } from '../dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
 import { DialogBox_JobsComponent } from '../dialog-box-jobs/dialog-box-jobs.component';
 import { JobsService } from 'src/app/services/jobs/jobs.service';
+import { RankingService } from 'src/app/services/ranking/ranking.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+export class RankingData{
+  rankId: number;
+  jobType: JobType;
+  knowLvl: number;
+  importance: number;
+}
 
 @Component({
   selector: 'app-setup',
@@ -25,22 +33,46 @@ export class SetupComponent implements OnInit {
   dataSourseWorkGroup: Array<any>;
   panelOpenState = false;
   currentWorkGroupSelection: WorkGroup;
+  // Job Types Setting Screen global data
+  jobTypesOGdata: Array<any>;
+  rankingsOGdata: Array<any>
+  dataSource2: Array<any>;
+
+  // Ranking Setting Screen global data
+  ranked: Array<any>;
+  rankedDTO: Array<any>;
+  unranked: Array<any>;
+  newRankList:RankingData[] = [];
 
   //@ViewChild(MatTable,{static:true}) table: MatTable<any>;
   @ViewChildren(MatTable) table !: QueryList<MatTable<string>>;
 
-  constructor(private jobsService: JobsService, private jobTypeService: JobTypeService, private workGroupService: WorkGroupService, public dialog: MatDialog) { }
+  constructor(private jobsService: JobsService, private workGroupService: WorkGroupService, private rankingService: RankingService, private jobTypeService: JobTypeService, public dialog: MatDialog) {
+    this.ranked = [];
+    this.unranked = [];
+    this.rankedDTO = [];
+   }
 
   ngOnInit(): void {
     this.jobTypeService.getAll().subscribe((data) => {
-      this.jobTypes = data;
       this.dataSource = data;
+      this.jobTypesOGdata = data;
+      this.rankingsOGdata = data;
+      console.log(this.dataSource);
+      console.log(this.jobTypesOGdata);
+      console.log(this.rankingsOGdata);    
+      this.generateRankingCombinations();
     });
     this.workGroupService.getAll().subscribe((data) => {
       this.workGroups = data;
       this.dataSourseWorkGroup = data;
     });
     
+    this.rankingService.getAll().subscribe((data) => {
+      this.dataSource2 = data;
+      console.log("This is dataSource2");
+      console.log(this.dataSource2);
+    })
   }
 
   openDialog(action,obj) {
@@ -64,10 +96,10 @@ export class SetupComponent implements OnInit {
   addRowData(row_obj){
     //If not empty, get the previous Id
     var previousId;
-    if(this.dataSource.length > 0){
-      var previousElem = this.dataSource.pop();
+    if(this.jobTypesOGdata.length > 0){
+      var previousElem = this.jobTypesOGdata.pop();
       previousId = previousElem.id;
-      this.dataSource.push(previousElem);
+      this.jobTypesOGdata.push(previousElem);
     }
     else{
       previousId = 0;
@@ -75,7 +107,7 @@ export class SetupComponent implements OnInit {
 
     //Increment previous Id by 1 and add new entry to the table
     previousId++;
-    this.dataSource.push({
+    this.jobTypesOGdata.push({
       id:previousId,
       typeName:row_obj.typeName
     });
@@ -97,7 +129,10 @@ export class SetupComponent implements OnInit {
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
         value.typeName = row_obj.typeName;
-        
+        var jobType = new JobType()
+        jobType.id = row_obj.id;
+        jobType.typeName = row_obj.typeName
+        this.jobTypeService.updateJobType(jobType);
       }
       return true;
     });
@@ -106,7 +141,7 @@ export class SetupComponent implements OnInit {
 
   deleteRowData(row_obj){
     this.jobTypeService.deleteJobType(row_obj.id);
-    this.dataSource = this.dataSource.filter((value,key)=>{
+    this.jobTypesOGdata = this.jobTypesOGdata.filter((value,key)=>{
       return value.id != row_obj.id;
     });
   }
@@ -240,4 +275,110 @@ export class SetupComponent implements OnInit {
     this.jobsService.deleteJob(row_obj.jobId);
   }
 
+  // For each JobType in the datasource, generate combinations
+  generateRankingCombinations(){
+      var length = this.rankingsOGdata.length;
+
+      // For each jobtype that is present in the jobtype screen...
+      for(let i = 0; i < length; i++){
+        // Get current job type name and generate all possibilities (1: Primary, 2: Secondary, 3: Training)
+        var jt = this.rankingsOGdata[i];
+        var currentJobType = jt.typeName;
+        var possibleCombinations = [1,2,3];
+        var numberOfRanks = jt.ranks.length;
+
+        // For each ranking already performed...
+        for(let j = 0; j < numberOfRanks; j++){
+          var rank = jt.ranks[j];
+          const index = possibleCombinations.indexOf(rank.knowLvl, 0);
+          
+          // After getting the ranking, display in the ranked list and remove from possible combinations
+          if (index > -1) {
+            var removedNum = possibleCombinations.splice(index, 1).pop();
+            switch(removedNum){
+              case(1):
+                this.ranked.push(`${currentJobType}` + " - Primary");
+                break;
+              case(2):
+                this.ranked.push(`${currentJobType}` + " - Secondary");
+                break;
+              case(3):
+                this.ranked.push(`${currentJobType}` + " - Training");
+                break;
+              default:
+                this.ranked.push(`${currentJobType}` + " - ERROR");
+            }
+          }
+        }
+
+        //For each remaining possibility, add to the unranked list
+        var lengthOfPossible = possibleCombinations.length;
+        for(let k = lengthOfPossible; k > 0; k--){
+          var indicator = possibleCombinations.pop();
+          switch(indicator){
+            case(1):
+              this.unranked.push(`${currentJobType}` + " - Primary");
+              break;
+            case(2):
+              this.unranked.push(`${currentJobType}` + " - Secondary");
+              break;
+            case(3):
+              this.unranked.push(`${currentJobType}` + " - Training");
+              break;
+            default:
+              this.unranked.push(`${currentJobType}` + " - ERROR");
+          }
+        }
+      }
+
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
+
+  saveRanking(event){
+    //Iterate through ranking list and prepare data to be updated
+    var lengthOfRanks = this.ranked.length;
+    for(let i = 0; i < lengthOfRanks; i++){
+      //Split the string into (JobType,Knowledge Lvl)
+      var splitString = this.ranked[i].split(" - ", 2);
+      //Loop through jobtype data to find the job type id
+      for(let j = 0; j < this.dataSource.length; j++){
+        if(splitString[0] == this.dataSource[j].typeName){
+          var rankData = new RankingData();
+          rankData.importance = i;
+          rankData.rankId = i;
+          rankData.jobType = this.dataSource[j];
+          
+          //(1: Primary, 2: Secondary, 3: Training)
+          switch(splitString[1]){
+            case("Primary"):
+              rankData.knowLvl = 1;
+              break;
+            case("Secondary"):
+              rankData.knowLvl = 2;
+              break;
+            case("Training"):
+              rankData.knowLvl = 3;
+              break;
+            default:
+              console.log("KNOWLVL ERROR");
+          }
+
+          this.newRankList.push(rankData);
+        }
+      }
+    }
+    // Save to database
+    this.rankingService.updateAll(this.newRankList);
+    console.log(this.newRankList);
+  }
 }

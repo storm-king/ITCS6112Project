@@ -4,7 +4,7 @@
 
           <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
 
-          <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8" id="table">
+          <table mat-table [dataSource]="jobTypesOGdata" #mytable class="my-table mat-elevation-z8" id="table">
         
             <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
@@ -30,7 +30,39 @@
           
           </div>
     </mat-tab>
-    <mat-tab label="Ranking">View 2</mat-tab>
+    <mat-tab label="Ranking">
+        <div class="container" id="rankingScreenBox">
+          
+          <h2>Unranked</h2>
+        
+          <div
+            cdkDropList
+            #unrankedLi="cdkDropList"
+            [cdkDropListData]="unranked"
+            [cdkDropListConnectedTo]="[rankedLi]"
+            class="rankedList"
+            (cdkDropListDropped)="drop($event)">
+            <div class="ranking-box" *ngFor="let item of unranked" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+        
+        <div class="container" id="rankingScreenBox">
+          <h2>Ranked</h2>
+        
+          <div
+            cdkDropList
+            #rankedLi="cdkDropList"
+            [cdkDropListData]="ranked"
+            [cdkDropListConnectedTo]="[unrankedLi]"
+            class="rankedList"
+            (cdkDropListDropped)="drop($event)">
+            <div class="ranking-box" *ngFor="let item of ranked" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+  
+        <button mat-button (click)="saveRanking($event)" mat-flat-button color="primary" style="width: 20em">Save</button>
+  
+      </mat-tab>
     <mat-tab label="Work Groups">
       <div class="container text-center">
 
