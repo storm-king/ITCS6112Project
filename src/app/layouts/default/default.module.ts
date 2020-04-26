@@ -23,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
+import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
+
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     DialogBoxComponent,
     AttendanceComponent,
     DialogBoxAttendanceComponent,
+    DialogBoxWorkGroupsComponent
     
   ],
   imports: [
@@ -61,6 +64,7 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
   
   entryComponents: [
     DialogBoxComponent
+
   ]
 })
 export class DefaultModule { }
