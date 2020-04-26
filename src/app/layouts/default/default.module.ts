@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { DialogBox_JobsComponent } from 'src/app/modules/dialog-box-jobs/dialog-box-jobs.component';
 
 
 
@@ -39,7 +41,8 @@ import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGrou
     DialogBoxComponent,
     AttendanceComponent,
     DialogBoxAttendanceComponent,
-    DialogBoxWorkGroupsComponent
+    DialogBoxWorkGroupsComponent,
+    DialogBox_JobsComponent,
     
   ],
   imports: [
@@ -58,6 +61,7 @@ import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGrou
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
     
   ],
   providers: [DatePipe],

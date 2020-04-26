@@ -62,5 +62,48 @@
         
         </div>
     </mat-tab>
-    <mat-tab label="Jobs">View 4</mat-tab>
+    <mat-tab label="Jobs">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let workgroup of dataSourseWorkGroup" (opened)="setWorkGroup(workgroup)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{workgroup.workGroupName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Expand To add Jobs
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="container text-center">
+
+                  <button mat-button (click)="openDialogJobs('Add',{})" mat-flat-button color="primary">Add Row</button>
+          
+                  <table mat-table [dataSource]="workgroup.jobs" #mytable class="my-table mat-elevation-z8" id="table">
+                
+                    <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+                
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element;"> {{element.jobName}} </td>
+                    </ng-container>
+                
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
+                      <td mat-cell *matCellDef="let element" class="action-link"> 
+                        <button (click)="openDialogJobs('Update',element)" mat-mini-fab color="primary"><mat-icon >edit</mat-icon></button>
+                        <button (click)="openDialogJobs('Delete',element)" mat-mini-fab color="primary"><mat-icon >delete</mat-icon></button>
+                      </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+                  </div>
+              
+            </mat-expansion-panel>
+          </mat-accordion>
+    </mat-tab>
 </mat-tab-group>
