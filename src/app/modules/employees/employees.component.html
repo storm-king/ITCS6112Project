@@ -1,1 +1,45 @@
-<p>employees works!</p>
+<div class="container">
+    <h1>New Employee</h1>
+    <div [hidden]="submitted"></div>
+    <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" required
+        [(ngModel)]="model.first_name" name = "first_name">
+        
+      </div>
+      <div class="form-group">
+        <label for="first_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" required
+        [(ngModel)]="model.last_name" name = "last_name">
+        
+      </div>
+    
+
+      <div class="form-group">
+        <label for="position">Role</label>
+        <input type="text" class="form-control" id="position"
+        [(ngModel)]="model.position" name="position">
+      </div>
+      <h2>Availability</h2>
+      <div class="form-group">
+        <label for="first_shift">First Shift </label>
+       <input type= "checkbox" class ="form-control" id="first_shift"
+       [(ngModel)]="model.first_shift" name = "first_shift">
+   
+      </div>
+      <div class="form-group">
+        <label for="second_shift">Second Shift </label>
+       <input type= "checkbox" class ="form-control" id="second_shift"
+       [(ngModel)]="model.second_shift" name = "second_shift">
+      </div>
+      <div class="form-group">
+        <label for="third_shift">Third Shift </label>
+       <input type= "checkbox" class ="form-control" id="third_shift"
+       [(ngModel)]="model.third_shift" name = "third_shift">
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>

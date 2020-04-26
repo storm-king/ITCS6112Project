@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
-
+import{BrowserModule} from '@angular/platform-browser';
+import { Browser } from 'protractor';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendan
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    BrowserModule
     
   ],
   providers: [DatePipe],
