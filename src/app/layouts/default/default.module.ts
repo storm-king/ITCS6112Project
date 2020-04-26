@@ -19,11 +19,18 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button';
 import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-box.component';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
+<<<<<<< HEAD
 import{BrowserModule} from '@angular/platform-browser';
 import { Browser } from 'protractor';
+=======
+import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
+
+
+>>>>>>> 8e72bafde5c421b06e370467d5eebb2a895bb12e
 
 @NgModule({
   declarations: [
@@ -37,6 +44,7 @@ import { Browser } from 'protractor';
     DialogBoxComponent,
     AttendanceComponent,
     DialogBoxAttendanceComponent,
+    DialogBoxWorkGroupsComponent
     
   ],
   imports: [
@@ -52,6 +60,7 @@ import { Browser } from 'protractor';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserModule
@@ -61,6 +70,7 @@ import { Browser } from 'protractor';
   
   entryComponents: [
     DialogBoxComponent
+
   ]
 })
 export class DefaultModule { }

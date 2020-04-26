@@ -2,10 +2,10 @@
 <h1 mat-dialog-title>Row Action: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.typeName">
+    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.workGroupName">
   </mat-form-field>
   <ng-template #elseTemplate>
-    Delete <b>{{local_data.typeName}}</b>?
+    Delete <b>{{local_data.workGroupName}}</b>?
   </ng-template>
 </div>
 <div mat-dialog-actions>

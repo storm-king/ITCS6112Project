@@ -21,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 
 
 
+/*The app module defines the root module of the 
+application along with metadata about the module*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +58,7 @@ import { FormsModule } from '@angular/forms';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

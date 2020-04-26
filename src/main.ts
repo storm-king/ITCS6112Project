@@ -7,6 +7,7 @@ import { environment } from './environments/environment';
 import './polyfills';
 import { AppModule } from './app/app.module';
 
+//The main file is the entry point used by angular to launch and bootstrap the application.
 if (environment.production) {
   enableProdMode();
 }
