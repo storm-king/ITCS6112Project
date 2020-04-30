@@ -4,28 +4,27 @@ import { Observable } from 'rxjs';
 
 export interface UsersData {
   id: number;
-  typeName: string;
+  jobName: string;
 }
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class JobTypeService {
+export class JobService {
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:8080/job_types/all');
+    return this.http.get('//localhost:8080/job/all');
   }
 
-  createJobType(user: UsersData){
+  createJob(user: UsersData){
     console.log(user.id)
-    console.log(user.typeName)
-    this.http.post('//localhost:8080/job_types/add', 
+    console.log(user.jobName)
+    this.http.post('//localhost:8080/job/add', 
     {
       "id": user.id,
-      "typeName": user.typeName
+      "jobName": user.jobName
     })
     .subscribe(
       data  => {
@@ -36,8 +35,8 @@ export class JobTypeService {
       });
   } 
 
-  deleteJobType(id:number){
-    return this.http.delete(`//localhost:8080/job_types/delete/${id}`, { responseType: 'text' }).subscribe(data => {
+  deleteJob(id:number){
+    return this.http.delete(`//localhost:8080/job/delete/${id}`, { responseType: 'text' }).subscribe(data => {
       console.log(data);
   });
 }

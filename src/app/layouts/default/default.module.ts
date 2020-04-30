@@ -23,14 +23,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
-<<<<<<< HEAD
+
+import{MatSelectModule} from '@angular/material/select';
 import{BrowserModule} from '@angular/platform-browser';
 import { Browser } from 'protractor';
-=======
+
 import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
+import { NewTileComponent } from 'src/app/modules/new-tile/new-tile.component';
+import { DialogBoxEmployeeComponent } from 'src/app/modules/dialog-box-employees/dialog-box-employees.component';
 
 
->>>>>>> 8e72bafde5c421b06e370467d5eebb2a895bb12e
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGrou
     DialogBoxComponent,
     AttendanceComponent,
     DialogBoxAttendanceComponent,
-    DialogBoxWorkGroupsComponent
+    DialogBoxWorkGroupsComponent,
+    NewTileComponent,
+    DialogBoxEmployeeComponent
     
   ],
   imports: [
@@ -63,7 +68,8 @@ import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGrou
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    BrowserModule
+    BrowserModule,
+    MatSelectModule
     
   ],
   providers: [DatePipe],
