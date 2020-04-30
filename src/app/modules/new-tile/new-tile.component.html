@@ -1,0 +1,23 @@
+<h3>New Job</h3>
+<mat-form-field>
+    <mat-label>Select Jobs</mat-label>
+    <mat-select [(value)] = "job_name">
+      <mat-option *ngFor="let job of jobs" [value] = "job.job_name">
+        {{job.job_name}}
+      </mat-option>
+    </mat-select>
+  
+  </mat-form-field>
+
+<mat-form-field>
+    <mat-label>Select Knowledge </mat-label>
+    <mat-select [(value)]="type_name">
+      <mat-option *ngFor="let level of levels" [value] = "level.typeName">
+        {{level.typeName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="button" (click) = "addJob()">Add Job</button>
+ 
+ 
+

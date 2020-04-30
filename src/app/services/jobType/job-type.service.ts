@@ -7,6 +7,7 @@ export interface UsersData {
   typeName: string;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })

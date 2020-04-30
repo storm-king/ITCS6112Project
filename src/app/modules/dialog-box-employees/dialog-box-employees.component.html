@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add Job</h1>
+<div mat-dialog-content>
+  <mat-form-field >
+        <mat-label>Select Knowledge </mat-label>
+        <mat-select [(value)]="type_name">
+          <mat-option *ngFor="let level of levels" [value] = "level.typeName">
+            {{level.typeName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+   
+  
+  <mat-form-field>
+    <mat-label>Select Jobs</mat-label>
+    <mat-select [(value)] = "jobId">
+      <mat-option *ngFor="let job of jobs" [value] = "job.jobId" >
+        {{job.jobName}}
+      </mat-option>
+    </mat-select>
+  
+  </mat-form-field>
+  
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.typeName}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">Add</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div> 
+ 

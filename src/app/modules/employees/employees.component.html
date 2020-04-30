@@ -1,1 +1,61 @@
-<p>employees works!</p>
+<div class="container">
+    <h1>New Employee</h1>
+    <div [hidden]="submitted"></div>
+    <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" required
+        [(ngModel)]="model.first_name" name = "first_name">
+        
+      </div>
+      <div class="form-group">
+        <label for="first_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" required name="first_name"
+        [(ngModel)]="model.last_name" name = "last_name">
+        
+      </div>
+     
+
+      <div class = "form-group">
+          <h3> Choose a Seniority Date</h3>
+          <input type="date" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event" (ngModelChange)="addEvent()"type="date" name="startDate"/>
+        
+    </div>
+   
+<div class= "from-group">
+  <h3>Job Type</h3>
+    <mat-form-field>
+      <mat-label>Select Job Type</mat-label>
+      <mat-select [(value)]= "model_job_type_name">
+        <mat-option *ngFor="let jobType of jobTypes" [value] = "jobType.typeName">
+          {{jobType.typeName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+      <h3>Availability</h3>
+     
+      <div class= "from-group">
+        <mat-form-field>
+          <mat-label>Select Shift</mat-label>
+          <mat-select [(value)]= "model.shift">
+            <mat-option *ngFor="let shift of shifts" [value] = "shift.id">
+              {{shift.typeName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      
+  <div class = "form-group" #appenHere>
+       
+        <button  *ngIf= "this.isButtonVisible" (click)="openDialog('Add')" type = "button"  id="add">Click Here to Add New jobs</button>
+    </div>
+    <div id ="one" ></div>
+  
+    <button type="submit"  class="btn btn-success" (click)="this.isButtonVisible= true" id="submit" [disabled]=!employeeForm.form.valid >Submit</button>
+    
+   
+
+    </form>
+</div>

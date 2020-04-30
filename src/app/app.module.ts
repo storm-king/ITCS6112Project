@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
+
 /*The app module defines the root module of the 
 application along with metadata about the module*/
 @NgModule({
@@ -28,6 +30,8 @@ application along with metadata about the module*/
     AlertComponent,
     LoginComponent,
     RegisterComponent,
+    
+   
    
    
     
