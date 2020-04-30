@@ -12,9 +12,9 @@
   
   <mat-form-field>
     <mat-label>Select Jobs</mat-label>
-    <mat-select [(value)] = "job_id">
-      <mat-option *ngFor="let job of jobs" [value] = "job.job_id" >
-        {{job.job_name}}
+    <mat-select [(value)] = "jobId">
+      <mat-option *ngFor="let job of jobs" [value] = "job.jobId" >
+        {{job.jobName}}
       </mat-option>
     </mat-select>
   

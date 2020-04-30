@@ -96,7 +96,7 @@ static model;
 
     this.employeeMatrix.employee_id = this.model.employee_id-1;
     this.employeeMatrix.job_knowledge = data.job_level_id;
-    this.employeeMatrix.job_id = data.job_id;
+    this.employeeMatrix.job_id = data.jobId;
     this.employeeMatrix.entry_id = this.matrix_entry_id;
    
     
