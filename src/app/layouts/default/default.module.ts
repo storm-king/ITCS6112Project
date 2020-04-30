@@ -21,7 +21,7 @@ import { DialogBoxComponent } from 'src/app/modules/dialogBox/dialog-box/dialog-
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DialogBoxAttendanceComponent } from 'src/app/modules/dialogBox_attendance/dialog-box/dialog-box_attendance.component';
 
 import{MatSelectModule} from '@angular/material/select';
@@ -29,12 +29,15 @@ import{BrowserModule} from '@angular/platform-browser';
 import { Browser } from 'protractor';
 
 import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { DialogBox_JobsComponent } from 'src/app/modules/dialog-box-jobs/dialog-box-jobs.component';
 import { NewTileComponent } from 'src/app/modules/new-tile/new-tile.component';
 import { DialogBoxEmployeeComponent } from 'src/app/modules/dialog-box-employees/dialog-box-employees.component';
 import { DialogBoxNewAttendanceComponent } from 'src/app/modules/dialogBoxNewAttendance/dialog-box-new-attendance/dialog-box-new-attendance.component';
 
 
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { DialogBoxNewAttendanceComponent } from 'src/app/modules/dialogBoxNewAtt
     AttendanceComponent,
     DialogBoxAttendanceComponent,
     DialogBoxWorkGroupsComponent,
+    DialogBox_JobsComponent,
     NewTileComponent,
     DialogBoxEmployeeComponent,
    DialogBoxNewAttendanceComponent
@@ -70,6 +74,8 @@ import { DialogBoxNewAttendanceComponent } from 'src/app/modules/dialogBoxNewAtt
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
+    DragDropModule,
     BrowserModule,
     MatSelectModule
     

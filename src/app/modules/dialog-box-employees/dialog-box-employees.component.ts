@@ -27,7 +27,7 @@ export class DialogBoxEmployeeComponent implements OnInit {
  
  primary={"id":0,"typeName":"Primary"};
  secondary={"id":1,"typeName":"Secondary"}; 
- tertiary={"id":2,"typeName":"Tertiary"}; 
+ tertiary={"id":2,"typeName":"Training"}; 
  levels=[this.primary,this.secondary,this.tertiary];
 jobs;
  
@@ -63,7 +63,6 @@ jobs;
         this.local_data.job_level_id = level.id;
       }
     }
-    console.log("HERE");
     console.log(this.local_data);
     this.dialogRef.close({event:"Add",data:this.local_data});
   }

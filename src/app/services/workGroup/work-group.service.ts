@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { WorkGroup } from 'src/app/models/workGroup';
 
 export interface UsersData {
   id: number;
@@ -38,6 +39,23 @@ export class WorkGroupService {
   deleteWorkGroup(id:number){
     return this.http.delete(`//localhost:8080/work_groups/delete/${id}`, { responseType: 'text' }).subscribe(data => {
       console.log(data);
-  });
-}
+    });
+  }
+
+  updateWorkGroup(wg:WorkGroup){
+    return this.http.post(`//localhost:8080/work_groups/update/${wg.id}`, wg).subscribe(data => {
+      console.log("POST Request is successful ", data);
+    }, error => {
+      console.log("Error ", error);
+    });
+  }
+
+  updateWorkGroupJobs(wg:WorkGroup){
+    return this.http.post(`//localhost:8080/work_groups/update_jobs/${wg.id}`, wg).subscribe(data => {
+      console.log("POST Request is successful ", data);
+    }, error => {
+      console.log("Error ", error);
+    });
+  }
+
 }
