@@ -22,7 +22,7 @@ export class DialogBoxEmployeeComponent implements OnInit {
 
   action:string;
   local_data:any;
- job_id;
+ jobId;
  type_name:string;
  
  primary={"id":0,"typeName":"Primary"};
@@ -44,8 +44,8 @@ jobs;
     this.local_data = {...data};
     this.action = this.local_data.action;
     this.type_name = this.local_data.element_id;
-    this.job_id = this.local_data.element_id;
-    console.log(this.job_id);
+    this.jobId = this.local_data.element_id;
+    console.log(this.jobId);
    
    }
 
@@ -54,7 +54,7 @@ jobs;
 
   doAction(){
     
-    this.local_data.job_id = this.job_id;
+    this.local_data.jobId = this.jobId;
    
     
     this.local_data.job_level = this.type_name;
@@ -63,6 +63,7 @@ jobs;
         this.local_data.job_level_id = level.id;
       }
     }
+    console.log("HERE");
     console.log(this.local_data);
     this.dialogRef.close({event:"Add",data:this.local_data});
   }
