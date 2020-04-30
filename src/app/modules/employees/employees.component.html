@@ -14,15 +14,7 @@
         [(ngModel)]="model.last_name" name = "last_name">
         
       </div>
-      <h3>Work Group</h3>
-      <mat-form-field>
-        <mat-label>Select Work Group</mat-label>
-        <mat-select [(value)]= "workGroupName">
-          <mat-option *ngFor="let workGroup of workgroups" [value] = "workGroup.workGroupName">
-            {{workGroup.workGroupName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+     
 
       <div class = "form-group">
           <h3> Choose a Seniority Date</h3>
