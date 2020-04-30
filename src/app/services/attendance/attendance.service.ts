@@ -10,7 +10,7 @@ export interface AttendanceData {
   id: number;
   employee_id:number
   absence_date: Date;
-  hours_missed: Time;
+  hours_missed: number;
   code_id: number;
 }
 
@@ -40,8 +40,8 @@ export class AttendanceService {
       "id": attendance.id,
       "employee_id":attendance.employee_id,
       "absence_date": attendance.absence_date,
-      "hourse_missed": attendance.hours_missed,
-      "id_code": attendance.code_id
+      "hours_missed": attendance.hours_missed,
+      "code_id": attendance.code_id
     })
     .subscribe(
       data  => {

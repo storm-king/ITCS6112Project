@@ -59,11 +59,13 @@
                 <a (click)="openDialog('Delete',element,'test')">Delete</a>  
               </td>
             </ng-container>
+
+           
         
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          
+          <button   (click)="openNewAttendance('Add')" type = "button"  id="add">Click Here to Add New Attendance</button>
           </div>
     </mat-tab>
     

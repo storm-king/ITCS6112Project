@@ -31,6 +31,7 @@ import { Browser } from 'protractor';
 import { DialogBoxWorkGroupsComponent } from 'src/app/modules/dialogBox_workGroups/dialog-box-work-groups/dialog-box-work-groups.component';
 import { NewTileComponent } from 'src/app/modules/new-tile/new-tile.component';
 import { DialogBoxEmployeeComponent } from 'src/app/modules/dialog-box-employees/dialog-box-employees.component';
+import { DialogBoxNewAttendanceComponent } from 'src/app/modules/dialogBoxNewAttendance/dialog-box-new-attendance/dialog-box-new-attendance.component';
 
 
 
@@ -49,7 +50,8 @@ import { DialogBoxEmployeeComponent } from 'src/app/modules/dialog-box-employees
     DialogBoxAttendanceComponent,
     DialogBoxWorkGroupsComponent,
     NewTileComponent,
-    DialogBoxEmployeeComponent
+    DialogBoxEmployeeComponent,
+   DialogBoxNewAttendanceComponent
     
   ],
   imports: [

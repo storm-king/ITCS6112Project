@@ -18,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { DialogBoxNewAttendanceComponent } from './modules/dialogBoxNewAttendance/dialog-box-new-attendance/dialog-box-new-attendance.component';
 
 
 
@@ -31,6 +32,7 @@ application along with metadata about the module*/
     AlertComponent,
     LoginComponent,
     RegisterComponent,
+   
     
    
    

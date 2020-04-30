@@ -7,6 +7,7 @@ import { Attendance } from 'src/app/models/attendance';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { stringToKeyValue } from '@angular/flex-layout/extended/typings/style/style-transforms';
 import { DatePipe } from '@angular/common';
+import { DialogBoxNewAttendanceComponent } from '../dialogBoxNewAttendance/dialog-box-new-attendance/dialog-box-new-attendance.component';
 
 
 
@@ -30,6 +31,8 @@ export class AttendanceComponent implements OnInit {
   attendance: Array<any>;
   displayedColumns: string[] = ['id','employee_id', 'hours_missed','absence_date','code_id','action'];
   dataSource: Array<any>;
+  savedAttendance= new Attendance();
+  hoursMissed:number;
 
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   roomsFilter: any;
@@ -47,6 +50,33 @@ export class AttendanceComponent implements OnInit {
     this.enableEdit = true;
     this.enableEditIndex = i;
     console.log(i, e);
+  }
+
+  openNewAttendance(action){
+    const dialogRef = this.dialog.open(DialogBoxNewAttendanceComponent, {
+      width: '250px',
+     
+    
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      if(result.event == 'Add'){
+        this.addNewAttendanceData(result.data);
+      }
+    });
+  }
+  addNewAttendanceData(data){
+    console.log(data);
+
+this.hoursMissed = Number(data.hours_missed);
+
+this.savedAttendance.employee_id = data.employee_id;
+this.savedAttendance.hours_missed = this.hoursMissed;
+this.savedAttendance.absence_date = data.absence_date;
+this.savedAttendance.code_id = data.code_id;
+this.attendanceService.createAttendance(this.savedAttendance);
   }
 
   openDialog(action,obj,element_id) {
