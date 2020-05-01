@@ -33,6 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { DialogBox_JobsComponent } from 'src/app/modules/dialog-box-jobs/dialog-box-jobs.component';
 import { NewTileComponent } from 'src/app/modules/new-tile/new-tile.component';
 import { DialogBoxEmployeeComponent } from 'src/app/modules/dialog-box-employees/dialog-box-employees.component';
+import { DialogBoxNewAttendanceComponent } from 'src/app/modules/dialogBoxNewAttendance/dialog-box-new-attendance/dialog-box-new-attendance.component';
 
 
 
@@ -53,7 +54,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DialogBoxWorkGroupsComponent,
     DialogBox_JobsComponent,
     NewTileComponent,
-    DialogBoxEmployeeComponent
+    DialogBoxEmployeeComponent,
+   DialogBoxNewAttendanceComponent
     
   ],
   imports: [

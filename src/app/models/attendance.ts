@@ -4,6 +4,6 @@ export class Attendance{
     id: number;
      employee_id:number;
     absence_date: Date;
-     hours_missed: Time;
+     hours_missed: number;
      code_id: number;
 }

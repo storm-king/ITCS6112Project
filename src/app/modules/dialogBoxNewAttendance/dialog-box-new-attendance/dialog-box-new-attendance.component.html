@@ -1,0 +1,42 @@
+<div mat-dialog-content>
+    <mat-form-field >
+          <mat-label>Select Employee </mat-label>
+          <mat-select [(value)] = "employee_id" >
+            <mat-option *ngFor="let employee of employees" [value] = "employee.employee_id">
+              {{employee.first_name}}  {{employee.last_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+     
+    
+        <div class="form-group">
+            <label for="hours_missed">Enter Hours Missed</label>
+            <input type="text" class="form-control" id="hours_missed" 
+            [(ngModel)]="this.local_data.hours_missed" name = "hours_missed">
+            
+          </div>
+          <div class = "form-group">
+            <h3> Select the date</h3>
+            <input type="date" [ngModel]="absence_date | date:'yyyy-MM-dd'" (ngModelChange)="absence_date = $event" (ngModelChange)="addEvent()"type="date" name="absence_date"/>
+          
+      </div>
+      <mat-form-field >
+        <mat-label>Select AttendanceCode </mat-label>
+        <mat-select [(value)]= "code_id" >
+          <mat-option *ngFor="let code of attendanceCodes" [value] = "code.code_id">
+            {{code.reason}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    
+    
+    <ng-template #elseTemplate>
+      Sure to delete <b>{{local_data.typeName}}</b>?
+    </ng-template>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="doAction()">Add</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+  </div> 
+   
