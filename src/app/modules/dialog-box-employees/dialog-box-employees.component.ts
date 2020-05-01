@@ -25,9 +25,9 @@ export class DialogBoxEmployeeComponent implements OnInit {
  jobId;
  type_name:string;
  
- primary={"id":0,"typeName":"Primary"};
- secondary={"id":1,"typeName":"Secondary"}; 
- tertiary={"id":2,"typeName":"Training"}; 
+ primary={"id":1,"typeName":"Primary"};
+ secondary={"id":2,"typeName":"Secondary"}; 
+ tertiary={"id":3,"typeName":"Training"}; 
  levels=[this.primary,this.secondary,this.tertiary];
 jobs;
  

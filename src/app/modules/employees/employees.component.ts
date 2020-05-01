@@ -13,6 +13,7 @@ import { TransferService } from 'src/app/services/transfer/transfer.service';
 import { DialogBoxEmployeeComponent } from '../dialog-box-employees/dialog-box-employees.component';
 import { JobMatrix } from 'src/app/models/jobMatrix';
 import { JobMatrixService } from 'src/app/services/job-matrix/job-matrix.service';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 
 
@@ -32,7 +33,7 @@ export class EmployeesComponent implements OnInit {
   @ViewChild('appenHere',{static:false,read: ViewContainerRef}) target: ViewContainerRef;
   @ViewChild(NewTileComponent)tile;
   private componentRef: ComponentRef<any>
-
+  
   jobGroup;
 static model;
   model = new Employee();
@@ -54,13 +55,17 @@ static model;
   jobNameShow = true;
   typeNameShow = true;
   model_job_type_name;
+  model_employee_id;
   obj:Array<any>;
   workGroupName;
+  alreadySubmitted = false;
   events;
   employee_id =Math.floor(Math.random() * (1000000 - 1000 + 1)) + 1000;
   matrix_entry_id =Math.floor(Math.random() * (1000000 - 1000 + 1)) + 1000;
    employeeSize;
    isButtonVisible = false;
+
+   datasource: Array<any>;
 
   levels: Array<any>;
   primary={"id":0,"typeName":"Primary"};
@@ -93,15 +98,31 @@ static model;
     });
   }
   addRowData(data){
-
-    this.employeeMatrix.employee_id = this.model.employee_id-1;
+    var employeeId = 0;
+    this.employeeService.getAll().subscribe((data)=>{
+      this.datasource = data;
+        });
+    for(let i = 0; i < this.datasource.length; i++ ){
+      if(employeeId < this.datasource[i].employee_id){
+        employeeId = this.datasource[i].employee_id;
+      }
+    }
+    console.log("EMPLOYEE ID");
+    console.log(employeeId);
+    if(this.alreadySubmitted){
+      this.employeeMatrix.employee_id = employeeId;
+    }
+    else{
+      this.employeeMatrix.employee_id = employeeId + 1;
+    }
+    
     this.employeeMatrix.job_knowledge = data.job_level_id;
     this.employeeMatrix.job_id = data.jobId;
     this.employeeMatrix.entry_id = this.matrix_entry_id;
    
     
     this.jobMatrixService.createJobMatrix(this.employeeMatrix);
-
+    this.alreadySubmitted = true;
   }
 
   ngOnInit(): void {
@@ -118,7 +139,7 @@ this.jobService.getAll().subscribe((data)=>{
 })
 this.employeeService.getAll().subscribe((data)=>{
   this.employeeSize = data.length+1
-  
+  this.datasource = data;
     });
 
 this.levels = [this.primary,this.secondary,this.tertiary]
@@ -144,6 +165,7 @@ onSubmit(){
   for(let jobType of this.jobTypes){
   if(this.model_job_type_name == jobType.typeName){
     this.model.job_type_id = jobType.id;
+
   }
   }
   

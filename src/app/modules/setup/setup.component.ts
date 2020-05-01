@@ -217,6 +217,10 @@ export class SetupComponent implements OnInit {
 
   setWorkGroup(e){
     this.currentWorkGroupSelection = e;
+    console.log(this.currentWorkGroupSelection.workGroupName);
+    if(this.currentWorkGroupSelection.jobs == null){
+      this.currentWorkGroupSelection.jobs = [];
+    }
   }
 
    openDialogJobs(action,obj) {
@@ -246,7 +250,7 @@ export class SetupComponent implements OnInit {
     this.table.forEach(el => {
       el.renderRows();
     });
-
+    console.log(this.currentWorkGroupSelection);
     this.workGroupService.updateWorkGroupJobs(this.currentWorkGroupSelection);
   }
 
@@ -347,18 +351,23 @@ export class SetupComponent implements OnInit {
   saveRanking(event){
     //Iterate through ranking list and prepare data to be updated
     var lengthOfRanks = this.ranked.length;
+    var reversedRanked = [...this.ranked];
+    reversedRanked = reversedRanked.reverse();
+
+    console.log(reversedRanked);
     for(let i = 0; i < lengthOfRanks; i++){
       //Split the string into (JobType,Knowledge Lvl)
-      var splitString = this.ranked[i].split(" - ", 2);
+      var splitString = reversedRanked[i].split(" - ", 2);
       //Loop through jobtype data to find the job type id
       for(let j = 0; j < this.dataSource.length; j++){
         if(splitString[0] == this.dataSource[j].typeName){
           var rankData = new RankingData();
-          rankData.importance = i;
+          rankData.importance = i + 1;
           rankData.rankId = i;
           rankData.jobType = this.dataSource[j];
           
           //(1: Primary, 2: Secondary, 3: Training)
+          console.log(splitString[1]);
           switch(splitString[1]){
             case("Primary"):
               rankData.knowLvl = 1;
