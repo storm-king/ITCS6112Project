@@ -1,1 +1,33 @@
-<p>allocate works!</p>
+<div class="container text-center">
+
+        <button (click)="allocate()">Allocate</button>
+         
+        <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8" id="table">
+         <script>window.alert(dataSource)</script> 
+      
+          <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- Id Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef >First Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef>Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+          </ng-container>
+      
+         
+
+          <ng-container matColumnDef="jobName">
+              <th mat-header-cell *matHeaderCellDef> Job Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.jobName}} </td>
+            </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        
