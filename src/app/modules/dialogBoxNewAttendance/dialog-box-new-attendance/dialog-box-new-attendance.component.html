@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="hours_missed" 
             [(ngModel)]="this.local_data.hours_missed" name = "hours_missed">
             
-          </div>>
+          </div>
           <div class = "form-group">
             <h3> Select the date</h3>
             <input type="date" [ngModel]="absence_date | date:'yyyy-MM-dd'" (ngModelChange)="absence_date = $event" (ngModelChange)="addEvent()"type="date" name="absence_date"/>
