@@ -1,2 +1,2 @@
-# ITCS6112FRONT
+# Manpower Allocator Frontend
 Angular Based Frontend
