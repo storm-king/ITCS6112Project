@@ -1,3 +1,3 @@
 # Manpower Allocator Frontend
-![Cover Photo](/imgs/Cover.png)
+![Cover Photo](/imgs/CoverPhoto.png)
 Angular Based Frontend
