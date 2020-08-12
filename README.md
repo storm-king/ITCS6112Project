@@ -1,3 +1,3 @@
 # Manpower Allocator Frontend
-<img alt='Cover Photo' src="/imgs/CoverPhoto.png">
+<img alt='Cover Photo' src="/imgs/ManpowerAllocator.png">
 
