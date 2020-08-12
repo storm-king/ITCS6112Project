@@ -1,3 +1,3 @@
 # Manpower Allocator Frontend
-![Cover Photo](/imgs/CoverPhoto.png =100x50)
-Angular Based Frontend
+<img alt='Cover Photo' src="/imgs/CoverPhoto.png"  width="120" height="80">
+
